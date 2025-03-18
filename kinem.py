@@ -57,7 +57,7 @@ if uploaded_file is not None:
         angulos = np.array(
             [calcular_angulo(ombro[i], cotovelo[i], punho[i]) for i in range(len(tempo))])
         angulos = kinem_y - angulos
-        peaks_kinem, _ = find_peaks(angulos, height=80, distance=100)
+        peaks_kinem, _ = find_peaks(angulos, height=60, distance=100)
         
         
 
@@ -90,7 +90,7 @@ if uploaded_file is not None:
             
             t_vf = t_vf-smartphone_x
             angulo = angulo+smartphone_y
-            peaks, _ = find_peaks(angulo, height=80, distance=100)
+            peaks, _ = find_peaks(angulo, height=60, distance=100)
             
             # Criar gráfico
             st.write("### Angulação do Cotovelo ao Longo do Tempo")
