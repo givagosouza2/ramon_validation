@@ -59,8 +59,7 @@ if uploaded_file is not None:
         angulos = kinem_y - angulos
         peaks_kinem, _ = find_peaks(angulos, height=80, distance=100)
         
-        resultado = pd.DataFrame(
-            {"Tempo": tempo, "Ângulo do Cotovelo (graus)": angulos})
+        
 
         if uploaded_file2 is not None:
             df_smart = pd.read_csv(uploaded_file2, sep=";")
@@ -115,8 +114,12 @@ if uploaded_file is not None:
             if len(peaks) == len(peaks_kinem):
                 fig, ax = plt.subplots()
                 ax.plot(angulo[peaks], angulos[peaks_kinem], 'ok')
+                ax.set_xlabel("Smartphone angle")
+                ax.set_ylabel("Kinematics angle")
                 st.pyplot(fig)
 
+            resultado = pd.DataFrame(
+            {"Smartphone": angulo[peaks], "Kinematic": angulos[peaks_kinem]})
             csv = resultado.to_csv(index=False).encode('utf-8')
             st.download_button(label="Baixar Dados Processados", data=csv,
                                file_name="angulos_cotovelo.csv", mime="text/csv")
