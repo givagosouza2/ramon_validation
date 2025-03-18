@@ -39,6 +39,10 @@ uploaded_file = st.file_uploader(
     "Carregue o arquivo CSV contendo os dados dos marcadores", type=["csv"])
 uploaded_file2 = st.file_uploader(
     "Carregue o arquivo TXT contendo os dados do smartphone", type=["txt"])
+kinem_x = st.number_input('Inserir o valor do translado horizontal da cinemática')
+kinem_y = st.number_input('Inserir o valor do translado vertical da cinemática')
+smartphone_x = st.number_input('Inserir o valor do translado horizontal do smartphone')
+smartphone_y = st.number_input('Inserir o valor do translado vertical do smartphone')
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
@@ -84,8 +88,8 @@ if uploaded_file is not None:
             # Criar gráfico
             st.write("### Angulação do Cotovelo ao Longo do Tempo")
             fig, ax = plt.subplots()
-            ax.plot(tempo, 160 - angulos, label="Ângulo do Cotovelo", color='b')
-            ax.plot(t_vf-4, angulo, 'r', label="Ângulo Acelerômetro")
+            ax.plot(tempo, kinem_y - angulos, label="Ângulo do Cotovelo", color='b')
+            ax.plot(t_vf-smartphone_x, angulo+smartphone_y, 'r', label="Ângulo Acelerômetro")
             ax.plot([0, 90], [90, 90], '--g')
             ax.plot([0, 90], [87.5, 87.5], '--k')
             ax.plot([0, 90], [85, 85], '--b')
