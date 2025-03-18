@@ -113,7 +113,9 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
             if len(peaks) == len(peaks_kinem):
-                st.text('São iguais')
+                fig, ax = plt.subplots()
+                ax.plot(angulo[peaks], angulos[peaks_kinem], 'ok')
+                st.pyplot(fig)
 
             csv = resultado.to_csv(index=False).encode('utf-8')
             st.download_button(label="Baixar Dados Processados", data=csv,
