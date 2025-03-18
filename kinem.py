@@ -6,6 +6,7 @@ import scipy
 from scipy import signal
 from scipy.signal import butter, filtfilt
 import math
+from scipy.signal import find_peaks
 
 # Função para aplicar um filtro passa-baixa Butterworth
 
@@ -84,12 +85,18 @@ if uploaded_file is not None:
             accelAngleX = np.arctan(
                 y_vf / np.sqrt(x_vf**2 + z_vf**2)) * 180 / math.pi
             angulo = accelAngleX + 90
-
+            
+            t_vf = t_vf-smartphone_x
+            angulo = angulo+smartphone_y
+            peaks, _ = find_peaks(angulo, height=80, distance=100)
+            
             # Criar gráfico
             st.write("### Angulação do Cotovelo ao Longo do Tempo")
             fig, ax = plt.subplots()
             ax.plot(tempo, kinem_y - angulos, label="Ângulo do Cotovelo", color='b')
-            ax.plot(t_vf-smartphone_x, angulo+smartphone_y, 'r', label="Ângulo Acelerômetro")
+            ax.plot(t_vf, angulo, 'r', label="Ângulo Acelerômetro")
+            ax.plot(t_vf[peaks], angulo[peaks], 'o')
+            
             ax.plot([0, 90], [90, 90], '--g')
             ax.plot([0, 90], [87.5, 87.5], '--k')
             ax.plot([0, 90], [85, 85], '--b')
