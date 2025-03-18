@@ -112,6 +112,9 @@ if uploaded_file is not None:
 
             st.pyplot(fig)
 
+            if len(peaks) == len(peaks_kinem):
+                st.text('São iguais')
+
             csv = resultado.to_csv(index=False).encode('utf-8')
             st.download_button(label="Baixar Dados Processados", data=csv,
                                file_name="angulos_cotovelo.csv", mime="text/csv")
