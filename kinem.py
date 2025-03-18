@@ -40,9 +40,9 @@ uploaded_file = st.file_uploader(
 uploaded_file2 = st.file_uploader(
     "Carregue o arquivo TXT contendo os dados do smartphone", type=["txt"])
 kinem_x = st.number_input('Inserir o valor do translado horizontal da cinemática')
-kinem_y = st.number_input('Inserir o valor do translado vertical da cinemática')
-smartphone_x = st.number_input('Inserir o valor do translado horizontal do smartphone')
-smartphone_y = st.number_input('Inserir o valor do translado vertical do smartphone')
+kinem_y = st.number_input('Inserir o valor do translado vertical da cinemática',value=160)
+smartphone_x = st.number_input('Inserir o valor do translado horizontal do smartphone',value = 5)
+smartphone_y = st.number_input('Inserir o valor do translado vertical do smartphone',value = 0)
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
