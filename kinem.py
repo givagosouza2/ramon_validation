@@ -56,6 +56,9 @@ if uploaded_file is not None:
         punho = df.iloc[:, 7:10].values
         angulos = np.array(
             [calcular_angulo(ombro[i], cotovelo[i], punho[i]) for i in range(len(tempo))])
+        angulos = kinem_y - angulos
+        peaks_kinem, _ = find_peaks(angulos, height=80, distance=100)
+        
         resultado = pd.DataFrame(
             {"Tempo": tempo, "Ângulo do Cotovelo (graus)": angulos})
 
@@ -93,7 +96,9 @@ if uploaded_file is not None:
             # Criar gráfico
             st.write("### Angulação do Cotovelo ao Longo do Tempo")
             fig, ax = plt.subplots()
-            ax.plot(tempo, kinem_y - angulos, label="Ângulo do Cotovelo", color='b')
+            ax.plot(tempo, angulos, label="Ângulo do Cotovelo", color='b')
+            ax.plot(tempo[peaks_kinem], angulos[peaks_kinem], 'oy')
+            
             ax.plot(t_vf, angulo, 'r', label="Ângulo Acelerômetro")
                            
             ax.plot(t_vf[peaks], angulo[peaks], 'o')
