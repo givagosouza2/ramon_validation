@@ -117,13 +117,15 @@ if uploaded_file is not None:
                 ax.set_xlabel("Smartphone angle")
                 ax.set_ylabel("Kinematics angle")
                 st.pyplot(fig)
-
-                resultado = pd.DataFrame({"Smartphone": angulo[peaks], "Kinematic": angulos[peaks_kinem]})
-                csv = resultado.to_csv(index=False).encode('utf-8')
-                st.download_button(label="Baixar Dados Processados", data=csv,
-                                   file_name="angulos_cotovelo.csv", mime="text/csv")
-
             else:
                 st.text('dados de diferente tamanhos')
+            resultado = pd.DataFrame({"Tempo": t_vf[peaks],"Angulo": angulo[peaks]})
+            csv = resultado.to_csv(index=False).encode('utf-8')
+            st.download_button(label="Baixar Dados Processados do Smartphone", data=csv,
+                               file_name="angulos_cotovelo_smartphone.csv", mime="text/csv")
+            resultado = pd.DataFrame({"Tempo": tempo[peaks_kinem],"Angulo": angulos[peaks_kinem]})
+            csv_2 = resultado.to_csv(index=False).encode('utf-8')
+            st.download_button(label="Baixar Dados Processados da Cinemática", data=csv_2,
+                               file_name="angulos_cotovelo_cinematica.csv", mime="text/csv")
 
             
