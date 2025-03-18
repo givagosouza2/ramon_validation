@@ -95,7 +95,7 @@ if uploaded_file is not None:
             fig, ax = plt.subplots()
             ax.plot(tempo, kinem_y - angulos, label="Ângulo do Cotovelo", color='b')
             ax.plot(t_vf, angulo, 'r', label="Ângulo Acelerômetro")
-            ax.plot(t_vf[peaks][3:-3], angulo[peaks][3:-3], 'o')
+            ax.plot(t_vf[peaks][50:-50], angulo[peaks][50:-50], 'o')
             
             ax.plot([0, 90], [90, 90], '--g')
             ax.plot([0, 90], [87.5, 87.5], '--k')
