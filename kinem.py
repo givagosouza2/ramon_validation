@@ -105,7 +105,7 @@ if uploaded_file is not None:
             ax.plot([0, 120], [90, 90], '--k')
             #ax.plot([0, 90], [87.5, 87.5], '--k')
             #ax.plot([0, 90], [85, 85], '--b')
-            ax.set_xlim(0,20)
+            ax.set_xlim(0,120)
             ax.set_xlabel("Time (s)")
             ax.set_ylabel("Angle (degrees)")
 
