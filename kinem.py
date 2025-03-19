@@ -96,16 +96,16 @@ if uploaded_file is not None:
             st.write("### Angulação do Cotovelo ao Longo do Tempo")
             fig, ax = plt.subplots()
             ax.plot(tempo, angulos, label="Ângulo do Cotovelo", color='b')
-            ax.plot(tempo[peaks_kinem], angulos[peaks_kinem], 'oy')
+            #ax.plot(tempo[peaks_kinem], angulos[peaks_kinem], 'oy')
             
             ax.plot(t_vf, angulo, 'r', label="Ângulo Acelerômetro")
                            
-            ax.plot(t_vf[peaks], angulo[peaks], 'o')
+            #ax.plot(t_vf[peaks], angulo[peaks], 'o')
             
-            ax.plot([0, 90], [90, 90], '--g')
-            ax.plot([0, 90], [87.5, 87.5], '--k')
-            ax.plot([0, 90], [85, 85], '--b')
-
+            ax.plot([0, 120], [90, 90], '--k')
+            #ax.plot([0, 90], [87.5, 87.5], '--k')
+            #ax.plot([0, 90], [85, 85], '--b')
+            ax.set_xlim(0,20)
             ax.set_xlabel("Time (s)")
             ax.set_ylabel("Angle (degrees)")
 
