@@ -106,19 +106,19 @@ if uploaded_file is not None:
             ax.plot([0, 90], [87.5, 87.5], '--k')
             ax.plot([0, 90], [85, 85], '--b')
 
-            ax.set_xlabel("Tempo (s)")
-            ax.set_ylabel("Ângulo (graus)")
+            ax.set_xlabel("Time (s)")
+            ax.set_ylabel("Angle (degrees)")
 
             st.pyplot(fig)
 
-            if len(peaks) == len(peaks_kinem):
-                fig, ax = plt.subplots()
-                ax.plot(angulo[peaks], angulos[peaks_kinem], 'ok')
-                ax.set_xlabel("Smartphone angle")
-                ax.set_ylabel("Kinematics angle")
-                st.pyplot(fig)
-            else:
-                st.text('dados de diferente tamanhos')
+            #if len(peaks) == len(peaks_kinem):
+            #    fig, ax = plt.subplots()
+            #    ax.plot(angulo[peaks], angulos[peaks_kinem], 'ok')
+            #    ax.set_xlabel("Smartphone angle")
+            #    ax.set_ylabel("Kinematics angle")
+            #    st.pyplot(fig)
+            #else:
+            #    st.text('dados de diferente tamanhos')
             resultado = pd.DataFrame({"Tempo": t_vf[peaks],"Angulo": angulo[peaks]})
             csv = resultado.to_csv(index=False).encode('utf-8')
             st.download_button(label="Baixar Dados Processados do Smartphone", data=csv,
